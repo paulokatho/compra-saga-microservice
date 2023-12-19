@@ -27,7 +27,7 @@ public class CreditoService {
     public void cancelPedidoValor(Long id ) {
         //creditoTotal = creditoTotal + pedido_valor.get(id);
         //pedido_valor.remove(id);
-        System.out.println("Pedido Valor falou. Iniciando cancelamento do pedido. Saldo insuficiente.");
+        System.out.println("Pedido Valor falhou. Iniciando cancelamento do pedido. Saldo insuficiente.");
     }
 
     public int getCreditoTotal() {
