@@ -16,6 +16,7 @@ public class CreditoService {
 
     public void newPedidoValor(Long pedidoId, int valor) {
         if (valor > creditoTotal) {
+            this.creditoTotal = 100; //Apenas parar que possamos testar vez após vez
             throw new IllegalStateException("Saldo Insuficiente");
         }
 
