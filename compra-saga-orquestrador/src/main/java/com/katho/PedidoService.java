@@ -20,5 +20,8 @@ public interface PedidoService {
     @Produces(MediaType.TEXT_PLAIN)
     public void newPedido(@QueryParam("id") @Header("id") Long id);
 
+    @GET
+    @Path("cancelPedido")
+    @Produces(MediaType.TEXT_PLAIN)
     public void cancelPedido(@QueryParam("id") @Header("id") Long id);
 }
