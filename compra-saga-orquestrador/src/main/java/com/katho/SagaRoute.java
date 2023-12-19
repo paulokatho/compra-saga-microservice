@@ -31,7 +31,7 @@ public class SagaRoute extends RouteBuilder {
         //Saga
         from("direct:saga").saga().propagation(SagaPropagation.REQUIRES_NEW).log("Iniciando Saga da Transação")
                 .to("direct:newPedido").log("Pedido ${header.id} criado. Saga ${body}.")
-                .to("direct:newPedidoValor").log("Credito do pedido ${header.id} no valor de BRL ${header.id} reservado para a saga ${body}")
+                .to("direct:newPedidoValor").log("Credito do pedido ${header.id} no valor de BRL ${header.valor} reservado para a saga ${body}")
                 .to("direct:finaliza").log("Saga realizada com sucesso!");
 
         //Pedido Service

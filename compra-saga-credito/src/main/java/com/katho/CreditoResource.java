@@ -4,6 +4,7 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
@@ -18,7 +19,7 @@ public class CreditoResource {
     @GET
     @Path("newPedidoValor")
     @Produces(MediaType.TEXT_PLAIN)
-    public Response newPedidoValor(Long pedidoId, int valor) {
+    public Response newPedidoValor(@QueryParam("pedidoId") Long pedidoId, @QueryParam("valor") int valor) {
         try {
             creditoService.newPedidoValor(pedidoId, valor);
             return Response.ok().build();
@@ -30,7 +31,7 @@ public class CreditoResource {
     @GET
     @Path("cancelPedidoValor")
     @Produces(MediaType.TEXT_PLAIN)
-    public void cancelPedidoValor(Long id) {
+    public void cancelPedidoValor(@QueryParam("id") Long id) {
 
         creditoService.cancelPedidoValor(id);
     }

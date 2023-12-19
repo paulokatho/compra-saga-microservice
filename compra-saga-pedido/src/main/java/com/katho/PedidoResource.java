@@ -13,15 +13,15 @@ public class PedidoResource {
     @Inject
     PedidoService pedidoService;
 
+    @GET
     @Path("newPedido")
     @Produces(MediaType.TEXT_PLAIN)
-    @GET
     public void newPedido(@QueryParam("id") Long id) {
         pedidoService.newPedido(id);
     }
 
-    @Path("cancelPedido")
     @GET
+    @Path("cancelPedido")
     @Produces(MediaType.TEXT_PLAIN)
     public void cancelPedido(@QueryParam("id") Long id) {
         pedidoService.cancelPedido(id);
