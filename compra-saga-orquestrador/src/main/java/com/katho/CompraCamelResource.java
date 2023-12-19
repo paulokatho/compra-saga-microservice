@@ -18,24 +18,33 @@ public class CompraCamelResource {
     @Produces(MediaType.TEXT_PLAIN)
     @GET
     public Response saga() {
-        Long id = 0L;
-
-        comprar(++id, 20);
-        comprar(++id, 30);
-        comprar(++id, 30);
-        comprar(++id, 25);
-
-        return Response.ok().build();
+       try {
+           Long id = 0L;
+   
+           comprar(++id, 20);
+           comprar(++id, 30);
+           comprar(++id, 30);
+           comprar(++id, 25);
+   
+           return Response.ok().build();        
+       } catch (Exception e) {
+        return Response.status(500).build();
+       }
     }
 
     //Chamando nossa Saga
     private void comprar(Long id, int valor) {
-        context.createFluentProducerTemplate()
-                .to("direct:saga")
-                .withHeader("id", id)
-                .withHeader("pedidoId", id)
-                .withHeader("valor", valor)
-                .request();
+        System.out.println("Pedido: " + id + " valor: " + valor);
+
+        try {
+            context.createFluentProducerTemplate()
+                    .to("direct:saga")
+                    .withHeader("id", id)
+                    .withHeader("valor", valor)
+                    .request();
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
 
     }
 }
