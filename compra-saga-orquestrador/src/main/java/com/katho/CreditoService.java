@@ -3,7 +3,9 @@ package com.katho;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.MediaType;
 
 import org.apache.camel.Header;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
@@ -16,13 +18,16 @@ public interface CreditoService {
 
     @GET
     @Path("newPedidoValor")
-    public void newPedidoValor(@QueryParam("pedidoId") @Header("pedidoId") Long pedidoId, @Header("valor") int valor);
+    @Produces(MediaType.TEXT_PLAIN)
+    public void newPedidoValor(@QueryParam("pedidoId") @Header("pedidoId") Long pedidoId, @QueryParam("valor") @Header("valor") int valor);
 
     @GET
     @Path("cancelPedidoValor")
+    @Produces(MediaType.TEXT_PLAIN)
     public void cancelPedidoValor(@QueryParam("id") @Header("id") Long id );
 
     @GET
     @Path("getCreditoTotal")
+    @Produces(MediaType.TEXT_PLAIN)
     public int getCreditoTotal();
 }
